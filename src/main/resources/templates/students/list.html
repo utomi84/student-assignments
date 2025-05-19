@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hallgatók listája</title>
+</head>
+<body>
+<h2>Hallgatók listája</h2>
+
+<a href="/students/new">Új hallgató hozzáadása</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Név</th>
+        <th>Email</th>
+        <th>Évfolyam</th>
+        <th>Műveletek</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.email}"></td>
+        <td th:text="${student.studyYear}"></td>
+        <td>
+            <a th:href="@{/students/edit/{id}(id=${student.id})}">Szerkesztés</a>
+            <a th:href="@{/students/delete/{id}(id=${student.id})}"
+               onclick="return confirm('Biztos törölni szeretnéd?')">Törlés</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

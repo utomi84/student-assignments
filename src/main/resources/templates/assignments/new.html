@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Új beadandó</title>
+</head>
+<body>
+<h2>Új beadandó hozzáadása</h2>
+
+<form action="#" th:action="@{/assignments/new}" th:object="${assignment}" method="post">
+    <label for="title">Cím:</label>
+    <input type="text" id="title" th:field="*{title}" required/><br/>
+
+    <label for="dueDate">Határidő:</label>
+    <input type="date" id="dueDate" th:field="*{dueDate}" required/><br/>
+
+    <label for="status">Státusz:</label>
+    <input type="text" id="status" th:field="*{status}" required/><br/>
+
+    <label for="student">Hallgató:</label>
+    <select id="student" th:field="*{student}" required>
+        <option th:each="student : ${students}"
+                th:value="${student.id}"
+                th:text="${student.name}">Válassz...</option>
+    </select><br/>
+
+    <button type="submit">Mentés</button>
+</form>
+
+<br/>
+<a href="/assignments">Vissza a listához</a>
+</body>
+</html>

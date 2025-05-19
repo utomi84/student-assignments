@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Beadandók listája</title>
+</head>
+<body>
+<h2>Beadandók listája</h2>
+
+<a href="/assignments/new">Új beadandó hozzáadása</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Cím</th>
+        <th>Határidő</th>
+        <th>Státusz</th>
+        <th>Hallgató</th>
+        <th>Műveletek</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="assignment : ${assignments}">
+        <td th:text="${assignment.id}"></td>
+        <td th:text="${assignment.title}"></td>
+        <td th:text="${assignment.dueDate}"></td>
+        <td th:text="${assignment.status}"></td>
+        <td th:text="${assignment.student.name}"></td>
+        <td>
+            <a th:href="@{/assignments/edit/{id}(id=${assignment.id})}">Szerkesztés</a>
+            <a th:href="@{/assignments/delete/{id}(id=${assignment.id})}"
+               onclick="return confirm('Biztos törölni szeretnéd?')">Törlés</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
